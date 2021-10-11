@@ -1,16 +1,22 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import numpy as np
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def generate_permutations(n):
+    lista = [[x] for x in range(1, n+1)]
+    for i in range(1, n+1):
+        for l in lista:
+            l.append(i)
+    return lista
 
 
-# Press the green button in the gutter to run the script.
+def leibniz_formula(A):
+    pass
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    m = np.array([[1, 5, 2],
+                 [4, 6, 13],
+                 [4, 7, 9]])
+    print(np.linalg.det(m))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(generate_permutations(5))
