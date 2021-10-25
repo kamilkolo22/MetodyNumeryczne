@@ -6,19 +6,27 @@ def permutation_sign(list):
 
 
 def permutation_sign2(list):
-    index = [list.index(x)+1 for x in list]
+    used = []
     cycles = []
     for n in list:
-        cycle = get_cycle(list[list.index(n):], index)
-        cycles.append(cycle)
+        if n not in used:
+            cycle = get_cycle(list, list.index(n))
+            used += cycle
+            cycles.append(len(cycle)-1)
+    return (-1)**sum(cycles)
 
-    return cycles
 
+def get_cycle(list, pointer):
+    if (pointer + 1) == list[pointer]:
+        return [pointer + 1]
+    else:
+        cycle = [pointer + 1]
+        start = pointer + 1
+        pointer = list[pointer] - 1
 
-def get_cycle(list, index, i):
-    perm = []
-    temp = []
-    for n in range(len(list)):
-        if not i == list[index.index(i)]:
-            perm += [i, index.index(i)]
-    return perm
+    while True:
+        if pointer + 1 == start:
+            return cycle
+        else:
+            cycle.append(pointer+1)
+            pointer = list[pointer] - 1

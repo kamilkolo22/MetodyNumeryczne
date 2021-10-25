@@ -14,7 +14,8 @@ if __name__ == '__main__':
     # print(Per1.permutation_sign([3,2,1]))
 
     # print(Det.det_leibniz_formula(m))
-    print(Sig.permutation_sign([3,2,1]))
+    # print(Sig.permutation_sign([3,2,1]))
     print(Sig.permutation_sign2([3, 6, 4, 1, 5, 2]))
+    print(Sig.permutation_sign2([2, 6, 5, 1, 3, 4]))
 
 
