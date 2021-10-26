@@ -1,5 +1,6 @@
 import Permutations as Per
 import PermutaionSign as Sig
+import numpy as np
 
 
 
@@ -16,3 +17,15 @@ def det_leibniz_formula(A):
         sum += product * sign
     return sum
 
+
+def det_laplace_formula(A):
+    n = len(A)
+    if n == 1:
+        return A[0][0]
+    else:
+        sum = 0
+        for i in range(n):
+            B = np.delete(A, 0, axis=1)
+            B = np.delete(B, i, axis=0)
+            sum += (-1)**(2+i) * A[i][0] * det_laplace_formula(B)
+        return sum
