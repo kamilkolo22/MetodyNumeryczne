@@ -3,7 +3,6 @@ import PermutaionSign as Sig
 import numpy as np
 
 
-
 def det_leibniz_formula(A):
     if not len(A) == len(A[0]):
         print("wrong matrix dimensions")
@@ -27,5 +26,16 @@ def det_laplace_formula(A):
         for i in range(n):
             B = np.delete(A, 0, axis=1)
             B = np.delete(B, i, axis=0)
-            sum += (-1)**(2+i) * A[i][0] * det_laplace_formula(B)
+            sum += (-1)**i * A[i][0] * det_laplace_formula(B)
+        return sum
+
+def det_laplace_formula_fast(A):
+    n = len(A)
+    if n == 1:
+        return A[0][0]
+    else:
+        sum = 0
+        for i in range(n):
+            B = np.concatenate((A[0:i, 1:], A[i + 1:len(A), 1:]), axis=0)
+            sum += (-1)**i * A[i][0] * det_laplace_formula_fast(B)
         return sum
