@@ -17,6 +17,34 @@ def det_leibniz_formula(A):
     return sum
 
 
+def det_leibniz_formula2(A):
+    if not len(A) == len(A[0]):
+        print("wrong matrix dimensions")
+    perm = Per.generate_permutations2(len(A))
+    sum = 0
+    for p in perm:
+        sign = Sig.permutation_sign(p)
+        product = 1
+        for k in p:
+            product *= A[p.index(k), k-1]
+        sum += product * sign
+    return sum
+
+
+def det_leibniz_formula3(A):
+    if not len(A) == len(A[0]):
+        print("wrong matrix dimensions")
+    perm = Per.generate_permutations3(len(A))
+    sum = 0
+    for p in perm:
+        sign = Sig.permutation_sign(p)
+        product = 1
+        for k in p:
+            product *= A[p.index(k), k-1]
+        sum += product * sign
+    return sum
+
+
 def det_laplace_formula(A):
     n = len(A)
     if n == 1:
