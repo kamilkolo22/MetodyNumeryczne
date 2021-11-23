@@ -1,6 +1,7 @@
 import Permutations as Per
 import PermutaionSign as Sig
 import numpy as np
+from TriangleMatrix import swap_rows
 
 
 def det_leibniz_formula(A):
@@ -67,3 +68,17 @@ def det_laplace_formula_fast(A):
             B = np.concatenate((A[0:i, 1:], A[i + 1:len(A), 1:]), axis=0)
             sum += (-1)**i * A[i][0] * det_laplace_formula_fast(B)
         return sum
+
+
+def det_gauss_elimination(A):
+    A = A.astype(float)
+    swap_number = 0
+    for k in range(len(A)-1):
+        for i in range(k, len(A)-1):
+            if A[k][k] == 0:
+                swap_rows(A, k)
+                swap_number += 1
+            w = A[i+1][k] / A[k][k]
+            A[i+1] = A[i+1] - A[k]*w
+    det = np.prod([A[k][k] for k in range(len(A))]) * (-1)**swap_number
+    return det
