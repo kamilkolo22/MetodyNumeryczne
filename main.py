@@ -2,6 +2,7 @@ import numpy as np
 import TriangleMatrix as TrM
 import Plots as P
 import CalcDet as Det
+import Cholesky as Ch
 
 
 if __name__ == '__main__':
@@ -15,12 +16,23 @@ if __name__ == '__main__':
     C = np.array([[1, 1, 1],
                   [1, 1, 3],
                   [7, 5, 4]])
+    D = np.array([[3, 2],
+                  [1, 4]])
     b = np.array([[1, 2, 3, 4]])
 
     # print(np.linalg.solve(B, b.T))
     # B = np.concatenate((B, b.T), axis=1)
-    # B_upper = TrM.upper_matrix(B.copy())
-    # print(TrM.solve_upper(B_upper))
+    # B_lower = TrM.lower_matrix(B.copy())
+    # print(B_lower)
+    # print(TrM.solve_lower(B_lower))
 
-    # print(TrM.lower_matrix(B))
-    # P.plot_laplace_leibniz_comp(wym=9)
+    # dec_LU = TrM.LU_decomposition(B)
+    # print(dec_LU[0])
+    # print(dec_LU[1])
+    # print(dec_LU[0] @ dec_LU[1])
+    # print(B)
+
+    L = Ch.cholesky_decomposition(D)
+    print(L)
+    print(L @ L.T)
+    print(D)

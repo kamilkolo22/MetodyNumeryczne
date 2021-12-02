@@ -51,5 +51,27 @@ def swap_rows_up(A, k):
 
 
 def solve_lower(A):
-    # TODO rozwiazać macierz dolnie trojkatna
-    pass
+    if (len(A) + 1) == len(A[0]):
+        A, b = np.hsplit(A, [len(A)])
+    else:
+        raise ValueError('Macierz A ma błędne wymiary')
+    n = len(A)
+    x = [0. for x in range(len(A))]
+    for k in range(len(A)):
+        sum_k = sum([A[k][i] * x[i] for i in range(k)])
+        x[k] = float((b[k] - sum_k) / A[k][k])
+    return x
+
+
+def LU_decomposition(A):
+    U = A.copy().astype(float)
+    L = np.identity(len(A))
+
+    for k in range(len(U) - 1):
+        for i in range(k, len(U) - 1):
+            if U[k][k] == 0:
+                raise ValueError('Macierzy nie mozna rozlozyc do postaci LU')
+            w = U[i + 1][k] / U[k][k]
+            L[i+1][k] = w
+            U[i + 1] = U[i + 1] - U[k] * w
+    return L, U
