@@ -3,7 +3,7 @@ import numpy as np
 
 def cholesky_decomposition(A):
     n = len(A)
-    L = np.zeros((n, n))
+    L = np.zeros((n, n), dtype=float)
 
     for j in range(n):
         for i in range(j, n):
