@@ -35,9 +35,21 @@ if __name__ == '__main__':
     # print(dec_LU[0] @ dec_LU[1])
     # print(B)
 
-    # print(Rank.matrix_rank(A))
+    A = np.array([[1, 2, 1, 3],
+                  [1, 2, 1, 3],
+                  [2, 1, 1, 1],
+                  [3, 3, 2, 4]])
+    B = np.array([[1, 0, 0, 0],
+                  [0, 1, 0, 0],
+                  [0, 0, 0, 0],
+                  [0, 0, 0, 1]])
+    C = np.array([[1, 0, 0, 0, 0, 0],
+                  [0, 0, 0, 1, 0, 0],
+                  [0, 0, 0, 1, 0, 0],
+                  [0, 0, 0, 0, 0, 1]])
+    print(Rank.matrix_rank(C))
     # print(Rank.matrix_rank(B))
     # print(Rank.matrix_rank(C))
     # print(Rank.matrix_rank(D))
 
-    print(GS.orthonormalization(A))
+    # print(GS.orthonormalization(A))

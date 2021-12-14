@@ -16,7 +16,9 @@ def swap_rows(A, k):
     for n in range(k+1, len(A)):
         if A[n][k] != 0:
             A[[k, n]] = A[[n, k]]
-            break
+            return True
+    return False
+
 
 
 def solve_upper(A):
