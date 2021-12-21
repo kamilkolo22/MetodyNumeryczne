@@ -5,6 +5,7 @@ import CalcDet as Det
 import Cholesky as Ch
 import MatrixRank as Rank
 import Gram_Schimdt as GS
+import QR_decomp as QR
 
 
 if __name__ == '__main__':
@@ -47,9 +48,18 @@ if __name__ == '__main__':
                   [0, 0, 0, 1, 0, 0],
                   [0, 0, 0, 1, 0, 0],
                   [0, 0, 0, 0, 0, 1]])
-    print(Rank.matrix_rank(C))
-    # print(Rank.matrix_rank(B))
     # print(Rank.matrix_rank(C))
+    # print(Rank.matrix_rank(B))
     # print(Rank.matrix_rank(D))
 
     # print(GS.orthonormalization(A))
+    Q, R = QR.qr_decomposition(A)
+    # print(A)
+    print(Q @ Q.T)
+    print(Q)
+    # print(R)
+    # print(Q @ R)
+    Q_np, R_np = np.linalg.qr(A)
+    print(Q_np)
+    # print(R_np)
+

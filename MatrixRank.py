@@ -4,16 +4,19 @@ from TriangleMatrix import swap_rows
 
 def matrix_rank(A):
     A = A.astype(float)
-    for k in range(len(A) - 1):
-        print(A)
-        for i in range(k, len(A) - 1):
-            if A[k][k] == 0:
-                if not swap_rows(A, k):
-                    continue
-            w = A[i + 1][k] / A[k][k]
-            A[i + 1] = np.around(A[i + 1] - A[k] * w, 10)
+    i, j = 0, 0
+    while i < len(A) - 1 and j < len(A[0]) - 1:
+        if A[i][j] == 0:
+            if not swap_rows(A, j):
+                j += 1
+                continue
+        for k in range(i, len(A) - 1):
+            w = A[k + 1][j] / A[i][j]
+            A[k + 1] = np.around(A[k + 1] - A[i] * w, 10)
+        i += 1
+        j += 1
     rank = 0
-    for k in range(len(A)):
-        if np.any(A[k]):
+    for j in range(len(A)):
+        if np.any(A[j]):
             rank += 1
     return rank
