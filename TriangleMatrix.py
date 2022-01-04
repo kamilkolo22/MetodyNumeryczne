@@ -20,7 +20,6 @@ def swap_rows(A, k):
     return False
 
 
-
 def solve_upper(A):
     if (len(A) + 1) == len(A[0]):
         A, b = np.hsplit(A, [len(A)])
