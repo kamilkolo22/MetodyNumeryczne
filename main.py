@@ -1,4 +1,6 @@
 import numpy as np
+
+import Gram_Schimdt
 import TriangleMatrix as TrM
 import Plots as P
 import CalcDet as Det
@@ -52,20 +54,29 @@ if __name__ == '__main__':
     # print(Rank.matrix_rank(B))
     # print(Rank.matrix_rank(D))
 
+    D = np.array([[3, 1, 3],
+                  [1, 4, 1],
+                  [1, 2, 1]])
+    Q = Gram_Schimdt.orthonormalization(D)
+    print(Q)
+    print(Q.T @ Q)
     # print(GS.orthonormalization(A))
     Q, R = QR.qr_decomposition(D)
-    print(R)
-    print(D)
-    print(Q @ R)
-    # print(Q)
     # print(R)
+    # print(D)
+    print(Q @ R)
+    print(Q @ Q.T)
+    print(Q)
     # # print(Q @ R)
-    # Q_np, R_np = np.linalg.qr(D)
+    Q_np, R_np = np.linalg.qr(D)
+    print(Q_np)
+    print(Q_np @ Q_np.T)
     # print(R_np)
     # print(Q_np @ R_np)
 
-    Q, R = QR.qr_factorization(D)
-    # print(D)
+    # Q, R = QR.qr_factorization(D)
+    # # print(D)
     # print(Q @ R)
-    print(Q)
-    print(R)
+    # # print(Q)
+    # print(R)
+

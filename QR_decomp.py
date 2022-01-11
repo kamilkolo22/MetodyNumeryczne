@@ -4,10 +4,13 @@ from Gram_Schimdt import orthonormalization
 
 def qr_decomposition(A):
     n = len(A)
+    m = len(A[0])
     Q = orthonormalization(A)
+    r = min(len(Q), len(Q[0]))
+
     R = np.zeros((n, n), dtype=float)
     for i in range(n):
-        for j in range(i, n):
+        for j in range(i, m):
             R[i, j] = np.dot(A[:, j], Q[:, i])
     return Q, R
 
